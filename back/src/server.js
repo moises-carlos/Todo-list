@@ -8,9 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middlewares
-// Configuração de CORS para ser mais permissiva e resolver o pre-flight
 app.use(cors()); // Habilita CORS para todas as requisições normais
-app.options('/*', cors()); // Habilita a resposta de pre-flight para TODAS as rotas
+// Usa Regex para capturar todas as rotas para o pre-flight e responder ao CORS
+app.options(/.*/, cors());
 app.use(express.json());
 app.use(morgan('dev')); // Logger de requisições, como pedido no trabalho
 
