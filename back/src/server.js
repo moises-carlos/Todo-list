@@ -7,14 +7,10 @@ import todoRoutes from './routes/todoRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Configuração explícita do CORS para permitir apenas o seu frontend
-const corsOptions = {
-  origin: 'https://todo-app-moises.onrender.com',
-  optionsSuccessStatus: 200 // Necessário para alguns navegadores mais antigos
-};
-
 // Middlewares
-app.use(cors(corsOptions)); // Usa as opções de CORS definidas
+// Configuração de CORS para ser mais permissiva e resolver o pre-flight
+app.use(cors()); // Habilita CORS para todas as requisições normais
+app.options('/*', cors()); // Habilita a resposta de pre-flight para TODAS as rotas
 app.use(express.json());
 app.use(morgan('dev')); // Logger de requisições, como pedido no trabalho
 
