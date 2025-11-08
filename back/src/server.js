@@ -8,6 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middlewares
+// Habilita o pre-flight do CORS para todas as rotas
+app.options('*', cors());
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev')); // Logger de requisições, como pedido no trabalho
